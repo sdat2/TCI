@@ -2,11 +2,8 @@
 # Wenchang Yang (wenchang@princeton.edu)
 # Sat Aug 24 15:02:58 EDT 2019
 import os.path  # , os, sys
-import xarray as xr, numpy as np  # , pandas as pd
-
-# import matplotlib.pyplot as plt
-from numpy import absolute, exp, log
-
+import xarray as xr
+from numpy import absolute
 from tci.entropy_deficit import entropy_deficit
 from tci.potential_intensity import potential_intensity
 from tci.wind_shear import wind_shear

@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # Wenchang Yang (wenchang@princeton.edu)
 # Fri Aug 23 11:53:11 EDT 2019
-# import os, os.path, sys
-# import xarray as xr, numpy as np, pandas as pd
-# import matplotlib.pyplot as plt
 import xarray as xr
 from numpy import exp, log
 

@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # Wenchang Yang (wenchang@princeton.edu)
 # Tue Sep 17 11:11:47 EDT 2019
-# import os.path, sys, os
-# import xarray as xr, numpy as np, pandas as pd
-# import matplotlib.pyplot as plt
-import os, os.path, sys
+import os, os.path
 from tci.AMx import do_tci
 
 expname = "StMaria_PI_ens_noleap"

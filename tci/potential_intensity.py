@@ -4,9 +4,9 @@
 # import os, os.path, sys
 # import xarray as xr, numpy as np, pandas as pd
 # import matplotlib.pyplot as plt
-import numpy as np, xarray as xr
+import xarray as xr
 from tcpypi import pi, cape
-from pcmin import pcmin3
+from tci.pcmin import pcmin3
 
 
 def potential_intensity(sst, slp, p, T, q, dim_x, dim_y, dim_z):
