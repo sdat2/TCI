@@ -5,7 +5,7 @@
 #import xarray as xr, numpy as np, pandas as pd
 #import matplotlib.pyplot as plt
 import os, os.path, sys
-from AMx import do_tci
+from tci.AMx import do_tci
 
 expname = 'Pinatubo_PI_ens_noleap'
 year_eruption = 1991
