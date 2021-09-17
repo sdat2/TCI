@@ -6,10 +6,12 @@
 # import matplotlib.pyplot as plt
 import numpy as np, xarray as xr
 from tcpypi import pi, cape
+from pcmin import pcmin3
 
 
 def potential_intensity(sst, slp, p, T, q, dim_x, dim_y, dim_z):
     """xarray-wrapper of the FORTRAN module pcmin3_kflag.
+
     sst: sea surface temperature;
     slp: seal level pressure;
     p: pressure levels;
@@ -43,9 +45,9 @@ def potential_intensity(sst, slp, p, T, q, dim_x, dim_y, dim_z):
     vmax.attrs["units"] = "m/s"
     iflag = iflag.astype("int32")
     iflag.attrs["long_name"] = "1: OK; 0: no convergence; 2: CAPE routine failed."
-    PI = xr.Dataset(dict(pmin=pmin, vmax=vmax, iflag=iflag))
+    pi = xr.Dataset(dict(pmin=pmin, vmax=vmax, iflag=iflag))
 
-    return PI
+    return pi
 
 
 if __name__ == "__main__":
