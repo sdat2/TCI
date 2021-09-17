@@ -6,7 +6,7 @@
 #import matplotlib.pyplot as plt
 import numpy as np, xarray as xr
 
-from pcmin import pcmin3
+from tcpypi import 
 
 def potential_intensity(sst, slp, p, T, q, dim_x, dim_y, dim_z):
     '''xarray-wrapper of the FORTRAN module pcmin3_kflag.
