@@ -11,7 +11,8 @@ from tci.absolute_vorticity import absolute_vorticity
 
 
 def do_tci(ifile, odir=None):
-    """calculate TC indices (e.g. GPI, VI) and related variables given FLOR/HiRAM atmos_month output"""
+    """Calculate TC indices (e.g. GPI, VI) and related
+    variables given FLOR/HiRAM atmos_month output."""
     print("[input]:", ifile)
     if odir is None:
         odir = "."

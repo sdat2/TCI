@@ -13,12 +13,12 @@ EXAMPLE_PREFIX = "10000101.atmos_month."
 
 def example_file_path(variable: str) -> str:
     """
-    Get example file path
+    Get example file path.
 
     Args:
         variable (str): Example variable.
 
     Returns:
-        str: Get the string.
+        str: Get the string for the path to the variable netcdf.
     """
     return os.path.join(EXAMPLE_PATH, EXAMPLE_PATH + variable + ".nc")

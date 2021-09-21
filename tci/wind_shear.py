@@ -5,7 +5,7 @@ import xarray as xr
 
 
 def wind_shear(u850, v850, u200, v200):
-    """calculate wind shear between 850hPa and 200hPa"""
+    """Calculate wind shear between 850hPa and 200hPa."""
     Vshear = ((u200 - u850) ** 2 + (v200 - v850) ** 2) ** 0.5
     Vshear.attrs["long_name"] = "850-200hPa wind shear"
     Vshear.attrs["units"] = "m/s"

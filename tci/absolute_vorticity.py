@@ -6,7 +6,8 @@ from numpy import pi, sin
 
 
 def absolute_vorticity(vort850, lat):
-    """calculate absolute vorticity at 850hPa given relative vorticity (s**-1) and grid latitudes (degN)"""
+    """Calculate absolute vorticity at 850hPa given
+    relative vorticity (s**-1) and grid latitudes (degN)."""
     eta = vort850 + 2 * (2 * pi / 24 / 3600) * sin(lat * pi / 180)
     eta.attrs["long_name"] = "850hPa absolute vorticity"
     eta.attrs["units"] = "s**-1"

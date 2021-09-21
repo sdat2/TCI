@@ -5,37 +5,38 @@ import xarray as xr
 from numpy import exp, log
 
 # physical parameters
-Lv = 2.555e6  # J/kg
-g = 9.81  # m/s**-2
-c_p = 1005.7  # J/K/kg
-Rd = 287  # J/K/kg
+Lv = 2.555e6  # latent heat of vaporisation, J/kg
+g = 9.81  # Gravitational constant, m/s**-2
+c_p = 1005.7  # Air heat capacity at constant pressure J/K/kg
+Rd = 287  # J/K/kg # ideal gas constant
 Rv = 461  # J/K/kg
 epsilon = Rd / Rv
 T0 = 273.15  # K
 
 
 def saturated_vapor_pressure(T):
-    """calculated saturated water vapor pressure (in Pa) given temperature T (in Kelvin)"""
+    """Calculated saturated water vapor pressure (in Pa) given temperature T (in Kelvin)"""
     return 610.94 * exp(17.625 * (T - T0) / (T - T0 + 243.04))
 
 
 def mixing_ratio(p, e):
-    """calculate mixing ration given air pressure (p) and water vapor pressure (e)"""
+    """Calculate mixing ration given air pressure (p) and water vapor pressure (e)"""
     return epsilon * e / (p - e)
 
 
 def mixing_ratio_by_q(q):
-    """calculate mixing ratio given specific humidity q"""
+    """Calculate mixing ratio given specific humidity q"""
     return q / (1 - q)
 
 
 def vapor_pressure_by_mixing_ratio(p, r_v):
-    """calculate water vapor pressure given air pressure and mixing ratio"""
+    """Calculate water vapor pressure given air pressure and mixing ratio"""
+    # pressure * radius of vap
     return p * r_v / (epsilon + r_v)
 
 
 def moist_entropy(T, p, RH=None, q=None):
-    """calculate moist entropy given air temperature (T), pressure (p) and relative humidity (RH, 0-1) or specific humidity (q).
+    """Calculate moist entropy given air temperature (T), pressure (p) and relative humidity (RH, 0-1) or specific humidity (q).
     The equation is: s = c_p*log(T) - Rd*log(p_d) + Lv*r_v/T - Rv*r_v*log(RH)"""
     if RH is None:
         assert (
@@ -55,7 +56,8 @@ def moist_entropy(T, p, RH=None, q=None):
 
 
 def entropy_deficit(sst, slp, Tb, RHb, p_m, Tm, RHm):
-    """calculate entropy deficity defined in Tang and Emanuel, 2012.
+    """Calculate entropy deficity defined in Tang and Emanuel, 2012.
+
     sst: sea surface temperature (in Kelvin);
     slp: sea level pressure (in Pa);
     Tb: boundary layer air temperature;

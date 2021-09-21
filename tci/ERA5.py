@@ -11,7 +11,7 @@ from tci.absolute_vorticity import absolute_vorticity
 
 
 def do_tci(year, odir=None):
-    """calculate TC indices (e.g. GPI, VI) and related variables given ERA5 monthly reanalysis"""
+    """Calculate TC indices (e.g. GPI, VI) and related variables given ERA5 monthly reanalysis"""
     print("[year]:", year)
     if odir is None:
         odir = "."
