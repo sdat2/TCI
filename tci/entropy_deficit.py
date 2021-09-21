@@ -5,13 +5,17 @@ import xarray as xr
 from numpy import exp, log
 
 # physical parameters
-Lv = 2.555e6  # latent heat of vaporisation, J/kg
+Lv = 2.555e6  # Latent heat of vaporisation, J/kg
 g = 9.81  # Gravitational constant, m/s**-2
-c_p = 1005.7  # Air heat capacity at constant pressure J/K/kg
+c_p = 1005.7  # Air heat capacity at constant pressure, J/K/kg
+# The gas constant for dry air is
 Rd = 287  # J/K/kg # ideal gas constant
+# The gas constant for water vapor is
 Rv = 461  # J/K/kg
-epsilon = Rd / Rv
-T0 = 273.15  # K
+epsilon = Rd / Rv  # Ratio of dry air gas constant
+# divided by water vapour gas constant.
+# https://glossary.ametsoc.org/wiki/Gas_constant
+T0 = 273.15  # Temperature of zero celsius in Kelvin, K
 
 
 def saturated_vapor_pressure(T):
@@ -36,8 +40,13 @@ def vapor_pressure_by_mixing_ratio(p, r_v):
 
 
 def moist_entropy(T, p, RH=None, q=None):
-    """Calculate moist entropy given air temperature (T), pressure (p) and relative humidity (RH, 0-1) or specific humidity (q).
-    The equation is: s = c_p*log(T) - Rd*log(p_d) + Lv*r_v/T - Rv*r_v*log(RH)"""
+    """Calculate moist entropy given air temperature (T),
+    pressure (p) and relative humidity (RH, 0-1) or specific humidity (q).
+
+    The equation is:
+        s = c_p*log(T) - Rd*log(p_d) + Lv*r_v/T - Rv*r_v*log(RH)
+    """
+
     if RH is None:
         assert (
             q is not None
@@ -45,9 +54,11 @@ def moist_entropy(T, p, RH=None, q=None):
         r_v = mixing_ratio_by_q(q)
         e = vapor_pressure_by_mixing_ratio(p, r_v)
         RH = e / saturated_vapor_pressure(T)
+
     else:  # RH is from input directly
         e = saturated_vapor_pressure(T) * RH
         r_v = mixing_ratio(p, e)
+
     s = c_p * log(T) - Rd * log(p - e) + Lv * r_v / T - Rv * r_v * log(RH)
     s.attrs["long_name"] = "moist entropy"
     s.attrs["units"] = "J/K/kg"
